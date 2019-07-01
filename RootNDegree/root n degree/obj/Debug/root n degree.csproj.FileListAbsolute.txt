@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\root n degree\root n degree\obj\Debug\root n degree.csprojAssemblyReference.cache
+C:\Users\User\source\repos\root n degree\root n degree\obj\Debug\root n degree.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\root n degree\root n degree\bin\Debug\root n degree.exe.config
+C:\Users\User\source\repos\root n degree\root n degree\bin\Debug\root n degree.exe
+C:\Users\User\source\repos\root n degree\root n degree\bin\Debug\root n degree.pdb
+C:\Users\User\source\repos\root n degree\root n degree\obj\Debug\root n degree.exe
+C:\Users\User\source\repos\root n degree\root n degree\obj\Debug\root n degree.pdb
