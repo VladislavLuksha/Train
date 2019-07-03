@@ -20,7 +20,7 @@ namespace DynamicArray
             Console.WriteLine(array2[2]);
             Console.WriteLine(array2[3]);
             Console.Write("IndexOf = ");
-            Console.WriteLine(array2.IndexOf(20));
+            Console.WriteLine(array2.IndexOf(5));
         }
     }
 }

@@ -65,15 +65,15 @@ namespace DynamicArray
         public int IndexOf(int number)
         {
             int index = 0;
-            for (index=0;index<=length-1;index++)
+            for (index=0;index<=length;index++)
             {
                 int tempNumber=data[index];
-                if(tempNumber==number)
+                if (tempNumber == number)
                 {
-                    break;
+                    return index;
                 }
             }
-            return index;
+            return -1;
         }
     }
 }
