@@ -26,20 +26,21 @@ namespace DynamicArray
 
         public void Add(int number)
         {
-            if(data.Length==capacity)
+            if (length == capacity)
             {
-                int[] data1 = new int[expandCoef * capacity];
-                for (int i=0;i<=data.Length-1;i++)
+                int[] newData = new int[expandCoef * capacity];
+                for (int i = 0; i <= length - 1; i++)
                 {
-                    data1[i] = data[i];
+                    newData[i] = data[i];
                 }
-                data1[data.Length] = number;
-                data = data1;
+                newData[length] = number;
+                data = newData;
             }
             else
             {
-                data[data.Length] = number;
+                data[length] = number;
             }
+            length++;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DynamicArray
             DynamicArray array1 = new DynamicArray(20);
             DynamicArray array2 = new DynamicArray();
             array2.Add(5);
-
+            array2.Add(10);
         }
     }
 }
