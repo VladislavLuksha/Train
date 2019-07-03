@@ -42,5 +42,38 @@ namespace DynamicArray
             }
             length++;
         }
+        public int this[int index]
+        {
+            get
+            {
+                return data[index];
+            }
+            set
+            {
+                data[index] = value;
+            }
+        }
+
+        public void PrintArray()
+        {
+            foreach(int it in data)
+            {
+                Console.WriteLine(it);
+            }
+        }
+
+        public int IndexOf(int number)
+        {
+            int index = 0;
+            for (index=0;index<=length-1;index++)
+            {
+                int tempNumber=data[index];
+                if(tempNumber==number)
+                {
+                    break;
+                }
+            }
+            return index;
+        }
     }
 }

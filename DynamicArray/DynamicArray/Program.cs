@@ -14,6 +14,13 @@ namespace DynamicArray
             DynamicArray array2 = new DynamicArray();
             array2.Add(5);
             array2.Add(10);
+            array2.Add(20);
+            array2[3] = 40;
+            Console.WriteLine(array2[1]);
+            Console.WriteLine(array2[2]);
+            Console.WriteLine(array2[3]);
+            Console.Write("IndexOf = ");
+            Console.WriteLine(array2.IndexOf(20));
         }
     }
 }
