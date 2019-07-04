@@ -15,7 +15,7 @@ namespace DynamicArray
 
         public DynamicArray()
         {
-            capacity = 16;
+            capacity = 9;
             data = new int[capacity];
         }
         public DynamicArray(int size)
@@ -74,6 +74,38 @@ namespace DynamicArray
                 }
             }
             return -1;
+        }
+        public void InsertElement(int number, int index)
+        {
+            if (index <= length && index <= capacity)
+            {
+                if(length<capacity-1)
+                {
+                    for (int i = length + 1; i >= index; i--)
+                    {
+                        data[i] = data[i - 1];
+                    }
+                    data[index] = number;
+                }
+                if (length == capacity-1)
+                {
+                    int[] newData = new int[capacity + 1];
+                    for (int j = 0; j <= length; j++)
+                    {
+                        newData[j] = data[j];
+                    }
+                    data = newData;
+                    for (int k = capacity; k >= index; k--)
+                    {
+                        data[k] = data[k - 1];
+                    }
+                    data[index] = number;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
         }
     }
 }
