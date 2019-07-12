@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,21 @@ using System.Threading.Tasks;
 
 namespace DynamicArray
 {
-    class DynamicArray
+    class DynamicArray:IEnumerator
     {
         int[] data;
         int capacity;
         int length;
+
         const int expandCoef=2;
+        const int capacityArray = 4;
+
+        private int foreachIndex;
+        public object Current => data[foreachIndex];
 
         public DynamicArray()
         {
-            capacity = 9;
+            capacity = capacityArray;
             data = new int[capacity];
         }
         public DynamicArray(int size)
@@ -46,15 +52,23 @@ namespace DynamicArray
         {
             get
             {
+                if (index>length || index<0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
                 return data[index];
             }
             set
             {
+                if (index > length || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
                 data[index] = value;
             }
         }
 
-        public void PrintArray()
+        public void ArrayPrinting()
         {
             foreach(int it in data)
             {
@@ -64,8 +78,7 @@ namespace DynamicArray
 
         public int IndexOf(int number)
         {
-            int index = 0;
-            for (index=0;index<=length;index++)
+            for (int index=0;index<=length;index++)
             {
                 int tempNumber=data[index];
                 if (tempNumber == number)
@@ -77,7 +90,11 @@ namespace DynamicArray
         }
         public void InsertElement(int number, int index)
         {
-            if (index <= length && index <= capacity)
+            if (index>length || index<0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            if (index <= length)
             {
                 if(length<capacity-1)
                 {
@@ -89,7 +106,7 @@ namespace DynamicArray
                 }
                 if (length == capacity-1)
                 {
-                    int[] newData = new int[capacity + 1];
+                    int[] newData = new int[capacity*expandCoef];
                     for (int j = 0; j <= length; j++)
                     {
                         newData[j] = data[j];
@@ -102,10 +119,25 @@ namespace DynamicArray
                     data[index] = number;
                 }
             }
+            
+        }
+
+        public bool MoveNext()
+        {
+            if(foreachIndex+1 < length)
+            {
+                return false;
+            }
             else
             {
-                Console.WriteLine("Error");
+                foreachIndex++;
+                return true;
             }
+        }
+
+        public void Reset()
+        {
+            
         }
     }
 }
