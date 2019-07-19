@@ -11,7 +11,11 @@ namespace Validator
         static void Main(string[] args)
         {
             Validation phoneNumber = new Validation();
-            phoneNumber.PhoneNumberCheck("375204219487");
+            bool result = phoneNumber.PhoneNumberCheck("803342JGG19487");
+            if( result == true)
+                Console.WriteLine("Phone number validation");
+            else
+                Console.WriteLine("Phone number not validation");
         }
     }
 }

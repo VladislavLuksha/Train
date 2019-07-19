@@ -8,37 +8,52 @@ namespace Validator
 {
     class Validation
     {
-        const string prefixMTC = "+37533";
-        const string prefixVEL = "+37529";
-        const string prefixLIFE = "+37525";
-        const string prefixVelcome = "+37544";
+        string []arrayPrefix;
 
-        public void PhoneNumberCheck(string line)
+        public Validation()
+        {
+            arrayPrefix = new string[8];
+            arrayPrefix[0]= "+37533";
+            arrayPrefix[1]= "+37529";
+            arrayPrefix[2] = "+37525";
+            arrayPrefix[3] = "+37544";
+            arrayPrefix[4] = "8029";
+            arrayPrefix[5] = "8033";
+            arrayPrefix[6] = "8025";
+            arrayPrefix[7] = "8044";
+        }
+        public bool PhoneNumberCheck(string line)
         {
             bool check = false;
             int counterNumber = 0;
-            for (int i = 0; i < prefixMTC.Length; i++)
-            {
-                if (prefixMTC[i] == line[i] || prefixLIFE[i] == line[i] || prefixVEL[i] == line[i] || prefixVelcome[i] == line[i])
-                    check = true;
-                else
-                    check = false;
-                if (check == false)
+            for (int i = 0; i < arrayPrefix.Length; i++)
+            {  
+                for(int j=0;j<arrayPrefix[i].Length;j++)
+                {
+                    if (arrayPrefix[i][j] == line[j])
+                        check = true;
+                    else
+                    {
+                        check = false;
+                        break;
+                    }
+                }
+                if (check == true)
                     break;
             }
-            for (int i = 1; i < line.Length; i++)
-            {   
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (line[i] == '+')
+                    i++;
                 if (Char.IsDigit(line[i]))
                     counterNumber++;
                 else
                     break;
             }
-            if (check == true && counterNumber == 12)
-            {
-                Console.WriteLine("Phone number validary!");
-            }
+            if (check == true && (counterNumber == 12 || counterNumber == 11))
+                return true;
             else
-                Console.WriteLine("Phone number not validary!");
+                return false;
         }
     }
 }
