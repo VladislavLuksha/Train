@@ -8,10 +8,11 @@ namespace Validator
 {
     class Validation
     {
-        string []arrayPrefix;
-
+         string[] arrayPrefix = {"+37529","+37533","+37525","+37544","8033","8044","8025","8029"};
+        /*
         public Validation()
         {
+            
             arrayPrefix = new string[8];
             arrayPrefix[0]= "+37533";
             arrayPrefix[1]= "+37529";
@@ -22,10 +23,22 @@ namespace Validator
             arrayPrefix[6] = "8025";
             arrayPrefix[7] = "8044";
         }
+        */
         public bool PhoneNumberCheck(string line)
         {
             bool check = false;
             int counterNumber = 0;
+            foreach(string elem in arrayPrefix)
+            {
+                if(line.StartsWith(elem))
+                {
+                    check = true;
+                    break;
+                }
+                else
+                    check = false;
+            }
+             /*
             for (int i = 0; i < arrayPrefix.Length; i++)
             {  
                 for(int j=0;j<arrayPrefix[i].Length;j++)
@@ -41,6 +54,7 @@ namespace Validator
                 if (check == true)
                     break;
             }
+            */
             for (int i = 0; i < line.Length; i++)
             {
                 if (line[i] == '+')
