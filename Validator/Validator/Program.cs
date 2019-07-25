@@ -11,7 +11,7 @@ namespace Validator
         static void Main(string[] args)
         {
             Validation phoneNumber = new Validation();
-            bool result = phoneNumber.PhoneNumberCheck("80254219487");
+            bool result = phoneNumber.CheckPrefix("+37533421967");
             if( result == true)
                 Console.WriteLine("Phone number validation");
             else

@@ -8,22 +8,12 @@ namespace Validator
 {
     class Validation
     {
-         string[] arrayPrefix = {"+37529","+37533","+37525","+37544","8033","8044","8025","8029"};
-        /*
-        public Validation()
-        {
-            
-            arrayPrefix = new string[8];
-            arrayPrefix[0]= "+37533";
-            arrayPrefix[1]= "+37529";
-            arrayPrefix[2] = "+37525";
-            arrayPrefix[3] = "+37544";
-            arrayPrefix[4] = "8029";
-            arrayPrefix[5] = "8033";
-            arrayPrefix[6] = "8025";
-            arrayPrefix[7] = "8044";
-        }
-        */
+        string[] arrayPrefix = { "+37529", "+37533", "+37525", "+37544", "8033", "8044", "8025", "8029" };
+        string[] arrayPrefixWithAPlus = {"+37529","+37533","+37525","+37544"};
+        string[] arrayPrefixNoPlus = {"8033", "8044", "8025", "8029"};
+        int startIndex;
+        int endIndex;
+        
         public bool PhoneNumberCheck(string line)
         {
             bool check = false;
@@ -69,5 +59,82 @@ namespace Validator
             else
                 return false;
         }
+
+        public bool CheckPrefix(string line)
+        {
+            bool check = false;
+            foreach (string elem in arrayPrefixWithAPlus)
+            {
+                if(line.StartsWith(elem))
+                {
+                    startIndex = 5;
+                    endIndex = line.Length - 1;
+                    if (endIndex == 12)
+                    {
+                        for (int i = startIndex; i <= endIndex; i++)
+                        {
+                            if (Char.IsDigit(line[i]))
+                            {
+                                check = true;
+                            }
+                            else
+                            {
+                                check = false;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        check = false;
+                    }
+                }
+                else
+                {
+                    check=false;
+                }
+            }
+            if(check==false)
+            {
+                foreach (string elem in arrayPrefixNoPlus)
+                {
+                    if (line.StartsWith(elem))
+                    {
+                        startIndex = 3;
+                        endIndex = line.Length - 1;
+                        if (endIndex == 10)
+                        {
+                            for (int i = startIndex; i <= endIndex; i++)
+                            {
+                                if (Char.IsDigit(line[i]))
+                                {
+                                    check = true;
+                                }
+                                else
+                                {
+                                    check = false;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            check = false;
+                        }
+                    }
+                    else
+                    {
+                        check = false;
+                    }
+                }
+            }
+            if (check == true)
+                return true;
+            else
+                return false;
+        }
     }
+
 }
