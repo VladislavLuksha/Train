@@ -19,7 +19,6 @@ namespace ValidatorCurlyBraces
                 if(DictionarySymbols.ContainsValue(line[i]))
                 {
                     StackSymbols.Push(line[i]);
-                    checkSymbols = true;
                 }
                 /*
                 foreach(char element in DictionarySymbols.Values)
@@ -68,16 +67,11 @@ namespace ValidatorCurlyBraces
                     checkSymbols = false;
                 }
             }
-            /*
             if(StackSymbols.Count!=0)
             {
                 checkSymbols = false;
             }
-            */
-            if (checkSymbols == true)
-                return true;
-            else
-                return false;
+            return checkSymbols;
         }
             
     }

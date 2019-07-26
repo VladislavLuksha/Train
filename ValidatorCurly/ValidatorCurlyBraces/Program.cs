@@ -11,7 +11,7 @@ namespace ValidatorCurlyBraces
         static void Main(string[] args)
         {
             CurlyBraces line = new CurlyBraces();
-            bool ResultCheck = line.Check("([(])");
+            bool ResultCheck = line.Check("([()]");
             if(ResultCheck==true)
             {
                 Console.WriteLine("Validation!");
