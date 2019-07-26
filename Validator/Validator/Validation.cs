@@ -11,9 +11,11 @@ namespace Validator
         string[] arrayPrefix = { "+37529", "+37533", "+37525", "+37544", "8033", "8044", "8025", "8029" };
         string[] arrayPrefixWithAPlus = {"+37529","+37533","+37525","+37544"};
         string[] arrayPrefixNoPlus = {"8033", "8044", "8025", "8029"};
-        int startIndex;
-        int endIndex;
-        
+        const int startIndexPlus=5;
+        const int endIndexPlus=12;
+        const int startIndexNoPlus = 3;
+        const int endIndexNoPlus = 10;
+        const int numberNoPlus = 11;
         public bool PhoneNumberCheck(string line)
         {
             bool check = false;
@@ -25,8 +27,6 @@ namespace Validator
                     check = true;
                     break;
                 }
-                else
-                    check = false;
             }
              /*
             for (int i = 0; i < arrayPrefix.Length; i++)
@@ -49,12 +49,14 @@ namespace Validator
             {
                 if (line[i] == '+')
                     i++;
+                if (line[0] == '8')
+                    i++;
                 if (Char.IsDigit(line[i]))
                     counterNumber++;
                 else
                     break;
             }
-            if (check == true && (counterNumber == 12 || counterNumber == 11))
+            if (check == true && (counterNumber == endIndexPlus || counterNumber == numberNoPlus))
                 return true;
             else
                 return false;
@@ -62,32 +64,28 @@ namespace Validator
 
         public bool CheckPrefix(string line)
         {
-            bool check = false;
+            bool check = true;
             foreach (string elem in arrayPrefixWithAPlus)
             {
                 if(line.StartsWith(elem))
                 {
-                    startIndex = 5;
-                    endIndex = line.Length - 1;
-                    if (endIndex == 12)
+                    check = true;
+                    int endIndex = line.Length - 1;
+                    if (endIndex == endIndexPlus)
                     {
-                        for (int i = startIndex; i <= endIndex; i++)
+                        for (int i = startIndexPlus; i <= endIndex; i++)
                         {
-                            if (Char.IsDigit(line[i]))
-                            {
-                                check = true;
-                            }
-                            else
+                            if (!Char.IsDigit(line[i]))
                             {
                                 check = false;
                                 break;
                             }
                         }
-                        break;
                     }
                     else
                     {
                         check = false;
+                        break;
                     }
                 }
                 else
@@ -101,39 +99,28 @@ namespace Validator
                 {
                     if (line.StartsWith(elem))
                     {
-                        startIndex = 3;
-                        endIndex = line.Length - 1;
-                        if (endIndex == 10)
+                        check = true;
+                        int endIndex = line.Length - 1;
+                        if (endIndex == endIndexNoPlus)
                         {
-                            for (int i = startIndex; i <= endIndex; i++)
+                            for (int i = startIndexNoPlus; i <= endIndex; i++)
                             {
-                                if (Char.IsDigit(line[i]))
-                                {
-                                    check = true;
-                                }
-                                else
+                                if (!Char.IsDigit(line[i]))
                                 {
                                     check = false;
                                     break;
                                 }
                             }
-                            break;
                         }
                         else
                         {
                             check = false;
+                            break;
                         }
-                    }
-                    else
-                    {
-                        check = false;
                     }
                 }
             }
-            if (check == true)
-                return true;
-            else
-                return false;
+            return check;
         }
     }
 
